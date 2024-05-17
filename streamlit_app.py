@@ -30,6 +30,7 @@ st.write('Streamlit jest biblioteką pozwalającą na uruchomienie modeli uczeni
 st.write('Instrukcja - Wybierz opcje z rozwijanej listy i pisz w pole slowo po angielsku a otrzymasz tlumaczenie na niemiecki')
 
 st.header('Przetwarzanie języka naturalnego')
+st.image('gr.jpg', caption="image")
 
 option = st.selectbox(
     "Opcje",
@@ -49,9 +50,8 @@ if option == "Wydźwięk emocjonalny tekstu (eng)":
 if option == "Tlumaczenie z angielskiego na niemiecki":
     text = st.text_area(label="Wpisz tekst")
     if text:
-        classifier = pipeline("translation_en_to_de", model="t5-base")
-        answer = classifier(text)
-        st.write(answer)
-        st.success('Tłumaczenie gotowe!')
+        translator = pipeline("translation_en_to_de", model="t5-base")
+        translation = translator(sentence, max_length=1024)
+        translated = translation[0]['translation_text']
 
 st.write('s22865')
