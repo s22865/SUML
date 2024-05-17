@@ -52,9 +52,6 @@ if option == "Tlumaczenie z angielskiego na niemiecki":
         classifier = pipeline("translation_en_to_de", model="t5-base")
         answer = classifier(text)
         st.write(answer)
-    if answer == text:
-        st.error('Błąd, wiadomość nie jest w języku angielskim.')
-    else:
         st.success('Tłumaczenie gotowe!')
 
 st.write('s22865')
