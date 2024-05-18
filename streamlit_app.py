@@ -48,10 +48,24 @@ if option == "Wydźwięk emocjonalny tekstu (eng)":
         st.write(answer)
 
 if option == "Tlumaczenie z angielskiego na niemiecki":
-    text = st.text_area(label="Wpisz tekst")
-    if text:
-        classifier = pipeline("translation_en_to_de")
-        answer = classifier(text)
-        st.write(answer)
+    sentence = st.text_area(label="Wpisz tekst po angielsku")
+    if sentence:
+        with st.spinner(text='Trwa tłumaczenie...'):
+
+            translator = pipeline("translation_en_to_de", model="t5-base")
+
+            translation = translator(sentence, max_length=1024)
+            translated = translation[0]['translation_text']
+
+
+        if translated == sentence:
+            st.error('Błąd, wiadomość nie jest w języku angielskim.')
+        else:
+            text = translated
+            speed = 15
+            st.success('Tłumaczenie gotowe!')
+            st.write("Tłumaczenie:")
+            typewriter(text=text, speed=speed)
+            st.balloons()
 
 st.write('s22865')
