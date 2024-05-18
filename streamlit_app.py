@@ -43,7 +43,7 @@ option = st.selectbox(
 if option == "Wydźwięk emocjonalny tekstu (eng)":
     text = st.text_area(label="Wpisz tekst")
     if text:
-        classifier = pipeline("sentiment-analysis")
+        classifier = pipeline("sentiment-analysis", model="t5-base")
         answer = classifier(text)
         st.write(answer)
 
