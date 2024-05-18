@@ -50,7 +50,7 @@ if option == "Wydźwięk emocjonalny tekstu (eng)":
 if option == "Tlumaczenie z angielskiego na niemiecki":
     text = st.text_area(label="Wpisz tekst")
     if text:
-        classifier = pipeline("translation_en_to_de")
+        classifier = pipeline("translation_en_to_de", model="t5-base")
         answer = classifier(text)
         st.write(answer)
 
